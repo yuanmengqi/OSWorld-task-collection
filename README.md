@@ -357,8 +357,8 @@ We provide a script that allows you to manually execute the task on the AWS plat
 
 2. **Open the VNC link** displayed in the terminal and log in to the visualization VM using the password `osworld-public-evaluation`.
 
-   ![image-20251017173538562](/Users/yuanmengqi/Library/Application Support/typora-user-images/image-20251017173538562.png)
+   ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/image-20251017173538562.png)
 
-   ![image-20251017173822126](/Users/yuanmengqi/Library/Application Support/typora-user-images/image-20251017173822126.png)
+   ![image-20251017173822126](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/image-20251017173822126.png)
 
 3. **Manually complete the task in the VNC** environment and then press the enter key to begin the evaluation. Check the evaluation results to ensure the setup and evaluation functions are correct.
