@@ -74,12 +74,6 @@ def config() -> argparse.Namespace:
         help="Operating system type (default: 'Ubuntu')"
     )
     
-    # evaluation version config
-    parser.add_argument(
-        "--eval_version", type=str, choices=["v1", "v2"], default="v2", 
-        help="Evaluation version to use (v1 for examples/, v2 for examples_v2/tasks/)"
-    )
-    
     args = parser.parse_args()
     return args
 
@@ -244,17 +238,10 @@ def main():
         args = config()
         logger.info("Arguments: %s", args)
         
-        # Build configuration file path based on evaluation version
-        if args.eval_version == "v1":
-            # v1 version: examples/{domain}/{example_id}.json
-            config_file = os.path.join(
-                args.test_config_base_dir, "examples", args.domain, f"{args.example_id}.json"
-            )
-        else:  # v2 version
-            # v2 version: examples_v2/tasks/{example_id}.json
-            config_file = os.path.join(
-                args.test_config_base_dir, "examples_v2", args.domain, f"{args.example_id}.json"
-            )
+        # Build configuration file path
+        config_file = os.path.join(
+            args.test_config_base_dir, "examples", args.domain, f"{args.example_id}.json"
+        )
         
         if not os.path.exists(config_file):
             logger.error(f"Configuration file does not exist: {config_file}")
@@ -266,7 +253,6 @@ def main():
         # Create result directory
         example_result_dir = os.path.join(
             args.result_dir,
-            args.eval_version,
             args.action_space,
             args.observation_type,
             "manual_examination",
