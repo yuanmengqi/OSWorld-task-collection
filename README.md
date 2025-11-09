@@ -393,7 +393,10 @@ We provide a script that allows you to manually execute the task on VMware, repl
    ```
 
 2. **Open VMware and Manually complete the task**:
+    After running the above code, the script will automatically start and initialize the virtual machine. You will see a Ubuntu interface similar to this in VMware:
+    ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware09.png)
     Manually complete the task in the VMware and press the enter key in the terminal to begin the evaluation. Check the evaluation results to ensure the setup and evaluation functions are correct.
+    * The password for the virtual machine in VMware is `password`
     * Please check if the evaluation has reward attack issues, i.e., whether there are cases where no operations, partial operations, or incorrect operations are performed but still incorrectly receive a score of 1.
     * Please check if there are multiple paths to complete the task. If they exist, ensure that the evaluation code can identify all successful examples.
     * If there are model evaluation tasks, please test whether the model evaluation results are stable and whether minor changes will interfere with the evaluation results.
