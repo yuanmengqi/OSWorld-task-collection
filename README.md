@@ -7,7 +7,7 @@ First, clone this repository and `cd` into it. Then, install the dependencies li
 
 ```
 # Clone the OSWorld repository
-git clone https://github.com/yuanmengqi/OSWorld-task-collection
+git clone https://github.com/yuanmengqi/OSWorld-V2
 
 # Change directory into the cloned repository
 cd OSWorld
@@ -22,21 +22,21 @@ pip install -r requirements.txt
 
 ### (2) VMware Installation
 1. Go to https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion and click `download now`
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware01.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware01.png)
 2. After clicking, you will be redirected to the login page. Please register an account and log in
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware02.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware02.png)
 3. Click `my downloads` and then click `HERE`
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware03.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware03.png)
 4. Click VMware Fusion (if you are a Windows user, click VMware Workstation Pro)
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware04.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware04.png)
 5. Select VMware Fusion 13 version 13.6.3 to download
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware05.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware05.png)
 6. Click HTTP download
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware06.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware06.png)
   If this is your first download, you need to check `I agree to the Terms and Conditions` first
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware07.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware07.png)
 7. After the download is complete, open the installer package and double-click to install
-  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware08.png)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/vmware08.png)
 8. Open VMware and run the script
   ```
   vmrun -T ws list
