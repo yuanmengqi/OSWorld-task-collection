@@ -1,52 +1,53 @@
 # OSWorld-v2 Task Collection & Implementation Guide
 
-## 0. Environment Setup
+## 0. Environment Setup with vmware
+We support using VMware for development. The main workflow is as follows:
+### (1) Environment Package Installation
+First, clone this repository and `cd` into it. Then, install the dependencies listed in `requirements.txt`. It is recommended that you use the latest version of Conda to manage the environment, but you can also choose to manually install the dependencies. Please ensure that the version of Python is >= 3.10.
 
-### General Setup with AWS
-The runtime environment is built on the **OSWorld framework**, primarily operating within **AWS evaluation environments**. Complete setup instructions can be found in [PUBLIC_EVALUATION_GUIDELINE](https://github.com/yuanmengqi/OSWorld-V2/blob/main/PUBLIC_EVALUATION_GUIDELINE.md).
+```
+# Clone the OSWorld repository
+git clone https://github.com/yuanmengqi/OSWorld-task-collection
 
-To simplify the setup process, we have preconfigured security groups, the host AMI, and other components. Below is a simple method to set up an AWS host. 
+# Change directory into the cloned repository
+cd OSWorld
 
-The configuration parameters are as follows:
+# Optional: Create a Conda environment for OSWorld
+# conda create -n osworld python=3.10
+# conda activate osworld
 
-| Configuration Item | Value                                                        |
-| ------------------ | ------------------------------------------------------------ |
-| AMI ID             | `ami-0cfb5f11de0f27c5c`                                      |
-| Instance Type      | - `t3.medium` (Recommended for ≤5 parallel tasks)<br />- `t3.large` (Recommended for ≤15 parallel tasks)<br /><br /> - These numbers are based on using VSCode over SSH. You can save resources by running via CLI—`t3.large` supports up to 20 tasks that way.<br /> - For higher parallelism, use a more powerful instance.<br /> - **For development only, we recommend using t3.large** |
-| VPC                | `vpc-0f207282fe145bcda`                                      |
-| Subnet             | `subnet-0a4b0c5b8f6066712`                                   |
-| Security groups    | `sg-05f8e79c10a7768e4`                                       |
-| Storage            | We recommend selecting 50GB, which can be expanded later if needed |
+# Install required dependencies
+pip install -r requirements.txt
+```
 
-Reference for configuration parameter locations on AWS website:
-<p>
-  <img src="https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/aws-1.png" width="80%" />
-  <img src="https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/aws-2.png" width="80%" />
-</p>
-(Here you can create a key to obtain your instance's key file)
-
-After launching, you can see the public DNS by opening the host instance:
-![aws-3](https://github.com/yuanmengqi/OSWorld-V2/blob/main/assets/aws-3.png)
-
-At this point, you have the instance key and DNS. Here's what you need to do:
-1. Save the provided `osworld-host-key-xxx.pem` key to your local machine and execute `chmod 400 "osworld-host-key-xxx.pem"` to grant permissions to the key.
-2. Connect to the host instance using the provided information. You have two ways to connect:
-   1. SSH:
-     ```
-     ssh -i <your_key_path> ubuntu@<your_public_dns>
-     ```
-   2. VSCode:
-     ```
-     Host host_example
-       HostName <your_public_dns>
-       User ubuntu
-       IdentityFile <your_key_path>
-     ```
-3. The code stored in the AWS image may not be the latest version. To avoid issues caused by version differences, please first log into your GitHub account and pull the latest code from the osworld-v2 repository.
-
-**Note**: If you are using a lab-provided instance, you can directly use the conda environment `osworld` without additional configuration. We will notify everyone if environment configuration updates are needed in the future.
-**Note**: The `/home/ubuntu/OSWorld-V2/.env_vars` file in the instance contains the environment variables required to run the code. Please complete it with the API parameters provided by the lab and set these environment variables before running the code.
-
+### (2) VMware Installation
+1. Go to https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion and click `download now`
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware01.png)
+2. After clicking, you will be redirected to the login page. Please register an account and log in
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware02.png)
+3. Click `my downloads` and then click `HERE`
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware03.png)
+4. Click VMware Fusion (if you are a Windows user, click VMware Workstation Pro)
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware04.png)
+5. Select VMware Fusion 13 version 13.6.3 to download
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware05.png)
+6. Click HTTP download
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware06.png)
+  If this is your first download, you need to check `I agree to the Terms and Conditions` first
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware07.png)
+7. After the download is complete, open the installer package and double-click to install
+  ![image-20251017173538562](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/vmware08.png)
+8. Open VMware and run the script
+  ```
+  vmrun -T ws list
+  ```
+  If it returns running virtual machines, the installation is correct. The terminal output should look like:
+  ```
+  % vmrun -T ws list
+  Total running VMs: 1
+  /Users/xxx/Ubuntu0/Ubuntu0.vmx
+  ```
+  where `/Users/xxx/Ubuntu0/Ubuntu0.vmx` is the path to the virtual machine
 
 ## 1. Task Selection Criteria
 
@@ -401,7 +402,7 @@ We provide a script that allows you to manually execute the task on the AWS plat
 
    ![image-20251017173822126](https://github.com/yuanmengqi/OSWorld-task-collection/blob/main/assets/image-20251017173822126.png)
 
-3. **Manually complete the task** ：
+3. **Manually complete the task**:
     Manually complete the task in the VNC environment and follow the instructions in the terminal to press the enter key to begin the evaluation. Check the evaluation results to ensure the setup and evaluation functions are correct.
     * Please check if the evaluation has reward attack issues, i.e., whether there are cases where no operations, partial operations, or incorrect operations are performed but still incorrectly receive a score of 1.
     * Please check if there are multiple paths to complete the task. If they exist, ensure that the evaluation code can identify all successful examples.
